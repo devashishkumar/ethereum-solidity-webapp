@@ -1,4 +1,4 @@
-#### This app includes following features
+#### This app include following features
 
 - Create and deploy smart contract in Local Ganache
 - Compile smart contract and generate abi and byte code
