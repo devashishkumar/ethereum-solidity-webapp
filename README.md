@@ -1,0 +1,2 @@
+This app is used to connect to local ganache, deploy smart contract in ganache, connect to smart contracts and use smart contracts methods, properties. all these features are accessible using node command and through browser.
+generate ABI and byte code using custom code and deploy in ganache.
