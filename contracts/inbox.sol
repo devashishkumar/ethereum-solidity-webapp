@@ -7,9 +7,9 @@ contract Inbox {
 
     string public message;
 
-    // function Inbox(string msg) public {
-    //     message = msg;
-    // }
+    constructor(string memory _msg) {
+        message = _msg;
+    }
 
     function setMessage(string memory _msg) public {
         message = _msg;

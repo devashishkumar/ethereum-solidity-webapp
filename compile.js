@@ -21,6 +21,7 @@ const input = {
 };
 
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
+// console.log(output);
 const abi = output.contracts["inbox.sol"]["Inbox"].abi;
 const byteCode = output.contracts["inbox.sol"]["Inbox"].evm.bytecode.object;
 // const abi = output.contracts["inbox.sol"]["Inbox"].abi;
