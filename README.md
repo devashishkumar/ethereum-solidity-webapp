@@ -1,2 +1,8 @@
-This app is used to connect to local ganache, deploy smart contract in ganache, connect to smart contracts and use smart contracts methods, properties. all these features are accessible using node command and through browser.
-generate ABI and byte code using custom code and deploy in ganache.
+#### This app includes following features
+
+- Create and deploy smart contract in Local Ganache
+- Compile smart contract and generate abi and byte code
+- Deploy smart contracts
+- Use smart contracts methods using web3
+- Test cases to get number of accounts available to the connected network, use smart contract constructor to pass default value and smart contract method to update smart contract property
+- Connect to rinkeby network
