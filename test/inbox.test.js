@@ -1,7 +1,7 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require("web3");
-const compiledCode = require('../compile');
+const compiledCode = require('../compile/inbox');
 
 // const web = new Web3(ganache.provider());
 const web = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
@@ -15,10 +15,10 @@ beforeEach(async () => {
     accounts = await web.eth.getAccounts();
     inbox = await new web.eth.Contract(compiledCode.interface)
         .deploy({ data: compiledCode.byteCode, arguments: [DEFAULT_MESSAGE] })
-        .send({ from: accounts[0], gas: 500000 })
+        .send({ from: accounts[0], gas: 1000000 })
 });
 
-describe('Inbox', () => {
+xdescribe('Inbox Contract', () => {
     it('deploy contract', () => {
         assert.ok(inbox.options.address);
     });

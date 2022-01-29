@@ -1,6 +1,6 @@
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const Web3 = require("web3");
-const compiledCode = require('./compile');
+const compiledCode = require('./../compile/inbox');
 const provider = new HDWalletProvider(
     'idle fox hover panda unfair vintage chat battle dog hamster chat flower',
     'https://rinkeby.infura.io/v3/rinkebykey'
