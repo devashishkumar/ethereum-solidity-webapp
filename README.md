@@ -6,3 +6,4 @@
 - Use smart contracts methods using web3
 - Test cases to get number of accounts available to the connected network, use smart contract constructor to pass default value and smart contract method to update smart contract property
 - Connect to rinkeby network
+- deploy contract to rinkeby testnet
