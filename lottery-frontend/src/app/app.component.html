@@ -1,0 +1,9 @@
+<h2>Blockchain Accounts</h2>
+<div *ngIf="blockchainAccounts && blockchainAccounts.length">
+  <ul>
+    <li *ngFor="let account of blockchainAccounts">{{account}}</li>
+  </ul>
+</div>
+
+<h2>Metamask Active Address Details:</h2>
+{{manager}}

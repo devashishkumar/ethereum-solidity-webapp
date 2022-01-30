@@ -21,6 +21,7 @@ beforeEach(async () => {
 describe('Lottery Contract', () => {
     it('deploy contract', () => {
         assert.ok(lottery.options.address);
+        // console.log(JSON.stringify(compiledCode.interface), lottery.options.address);
     });
 
     it('allow multiple accounts to enter', async () => {
