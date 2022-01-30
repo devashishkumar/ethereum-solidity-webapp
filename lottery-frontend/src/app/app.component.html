@@ -7,3 +7,20 @@
 
 <h2>Metamask Active Address Details:</h2>
 {{manager}}
+
+<h2>Players</h2>
+{{players.length}}
+<h2>Balance</h2>
+{{balance}}
+<hr />
+<form>
+
+  <label for="amount">Enter Ether</label>
+  <input type="number" id="amount" name="amount" [(ngModel)]="formContent.amount" #form="ngModel"
+    (ngModelChange)="valueChange($event)">
+
+  <input type="submit" value="Submit" (click)="submitForm()" />
+</form>
+<hr />
+
+<input type="submit" value="Pick Winner" (click)="pickWinner()" />
