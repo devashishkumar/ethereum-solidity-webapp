@@ -8,3 +8,4 @@
 - Connect to rinkeby network
 - deploy contract to rinkeby testnet
 - add lottery app smart contract, deploy and access all methods of smart contract using web3
+- add angular app to access smart contract features from frontend
