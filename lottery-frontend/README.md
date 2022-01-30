@@ -11,4 +11,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 - In project root directory execute command 'npm run test'. lottery test cases will execute.
 - Copy abi code and user address from lottery.test.js test file
 - Paste abi code and user address in app.component.ts
-- Open http://localhost:4200 in browser
+- Open `http://localhost:4200` in browser
