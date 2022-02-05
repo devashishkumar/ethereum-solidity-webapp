@@ -1,4 +1,4 @@
-#### This app include following features
+## This app include following features
 
 ### Lottery App
 
@@ -15,4 +15,4 @@
 
 ### Crowd Funding App
 
-- add crowd funding smart contract and related images
+- add campaign smart contract and related images
