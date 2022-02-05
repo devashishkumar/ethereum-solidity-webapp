@@ -1,5 +1,7 @@
 #### This app include following features
 
+### Lottery App
+
 - Create and deploy smart contract in Local Ganache
 - Compile smart contract and generate abi and byte code
 - Deploy smart contracts
@@ -9,4 +11,8 @@
 - deploy contract to rinkeby testnet
 - add lottery app smart contract, deploy and access all methods of smart contract using web3
 - add angular app to access smart contract features from frontend
-- add campaign smart contract and related images
+
+
+### Crowd Funding App
+
+- add crowd funding smart contract and related images
