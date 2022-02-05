@@ -15,4 +15,4 @@
 
 ### Crowd Funding App
 
-- add campaign smart contract and related images
+- add Crowd Funding smart contract and related images
