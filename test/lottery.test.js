@@ -1,7 +1,6 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require("web3");
-// const compiledCode = require('../compile/lottery');
 const compiledCode = require('../ethereum/compile/lottery');
 
 // const web = new Web3(ganache.provider());
