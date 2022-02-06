@@ -16,3 +16,9 @@
 ### Crowd Funding App
 
 - add Crowd Funding smart contract and related images
+
+
+### New Changes
+
+- update compile script to generate smart contract abi and byte codes in build directory with smart contract file names
+- deploy smart contracts using build json
