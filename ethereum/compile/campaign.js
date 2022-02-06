@@ -33,7 +33,7 @@ console.log(output);
 
 const abi = output.contracts["campaign.sol"]["Campaign"].abi;
 const byteCode = output.contracts["campaign.sol"]["Campaign"].evm.bytecode.object;
-// const content = output.contracts["lottery.sol"]['Lottery'];
+
 module.exports = {
     interface: abi,
     byteCode: byteCode
