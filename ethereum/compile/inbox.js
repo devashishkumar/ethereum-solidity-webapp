@@ -3,7 +3,8 @@ const fs = require('fs');
 const solc = require('solc');
 const currentDirectory = __dirname;
 const projectDirectory = process.cwd();
-const inboxPath = path.resolve(projectDirectory, 'contracts', 'inbox.sol');
+// console.log(currentDirectory, projectDirectory);
+const inboxPath = path.resolve(`${projectDirectory}/ethereum`, 'contracts', 'inbox.sol');
 const fileContent = fs.readFileSync(inboxPath, 'utf8');
 
 const input = {
