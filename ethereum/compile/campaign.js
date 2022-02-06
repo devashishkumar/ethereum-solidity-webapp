@@ -29,7 +29,6 @@ const input = {
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
 fs.ensureDirSync(buildPath);
-console.log(output);
 
 const abi = output.contracts["campaign.sol"]["Campaign"].abi;
 const byteCode = output.contracts["campaign.sol"]["Campaign"].evm.bytecode.object;
@@ -41,7 +40,15 @@ module.exports = {
 
 const outputObj = JSON.parse(JSON.stringify(output.contracts));
 for (let contract in outputObj) {
-    fs.outputJSONSync(
-        path.resolve(buildPath, contract + '.json'), output.contracts[contract]
-    );
+    if (Object.keys(output.contracts[contract]) && Object.keys(output.contracts[contract]).length) {
+        Object.keys(output.contracts[contract]).forEach(e => {
+            fs.outputJSONSync(
+                path.resolve(buildPath, e + '.json'), output.contracts[contract][e]
+            );
+        });
+    } else {
+        fs.outputJSONSync(
+            path.resolve(buildPath, contract + '.json'), output.contracts[contract]
+        );
+    }
 }

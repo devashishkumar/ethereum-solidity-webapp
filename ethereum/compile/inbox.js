@@ -32,7 +32,7 @@ fs.ensureDirSync(buildPath);
 
 const abi = output.contracts["inbox.sol"]["Inbox"].abi;
 const byteCode = output.contracts["inbox.sol"]["Inbox"].evm.bytecode.object;
-// const content = output.contracts["inbox.sol"]['Inbox'];
+
 module.exports = {
     interface: abi,
     byteCode: byteCode
@@ -40,7 +40,15 @@ module.exports = {
 
 const outputObj = JSON.parse(JSON.stringify(output.contracts));
 for (let contract in outputObj) {
-    fs.outputJSONSync(
-        path.resolve(buildPath, contract + '.json'), output.contracts[contract]
-    );
+    if (Object.keys(output.contracts[contract]) && Object.keys(output.contracts[contract]).length) {
+        Object.keys(output.contracts[contract]).forEach(e => {
+            fs.outputJSONSync(
+                path.resolve(buildPath, e + '.json'), output.contracts[contract][e]
+            );
+        });
+    } else {
+        fs.outputJSONSync(
+            path.resolve(buildPath, contract + '.json'), output.contracts[contract]
+        );
+    }
 }

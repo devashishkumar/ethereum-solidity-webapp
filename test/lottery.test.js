@@ -2,7 +2,7 @@ const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require("web3");
 // const compiledCode = require('../ethereum/compile/lottery');
-const inputBuild = require('../ethereum/build/lottery.sol.json');
+const inputBuild = require('../ethereum/build/Lottery.json');
 
 // const web = new Web3(ganache.provider());
 const web = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
@@ -19,7 +19,7 @@ const compiledCode = JSON.parse(JSON.stringify(inputBuild));
  */
  async function deployContractFromConpiledScript() {
     return await new web.eth.Contract(compiledCode.interface)
-        .deploy({ data: compiledCode.byteCode })
+        .deploy({ data: compiledCode.evm.byteCode.object })
         .send({ from: accounts[0], gas: 1000000 })
 }
 
@@ -27,16 +27,16 @@ const compiledCode = JSON.parse(JSON.stringify(inputBuild));
  * deploy contract from contract builds
  */
 async function deployContractFromBuildPath() {
-    return await new web.eth.Contract(compiledCode['Lottery'].abi)
-        .deploy({ data: compiledCode['Lottery'].evm.bytecode.object })
-        .send({ from: accounts[0], gas: 1000000 })
+    return await new web.eth.Contract(compiledCode.abi)
+    .deploy({ data: compiledCode.evm.bytecode.object })
+    .send({ from: accounts[0], gas: 1000000 })
 }
 
 beforeEach(async () => {
     accounts = await web.eth.getAccounts();
-    lottery = await new web.eth.Contract(compiledCode['Lottery'].abi)
-        .deploy({ data: compiledCode['Lottery'].evm.bytecode.object })
-        .send({ from: accounts[0], gas: 1000000 })
+    lottery = await new web.eth.Contract(compiledCode.abi)
+    .deploy({ data: compiledCode.evm.bytecode.object })
+    .send({ from: accounts[0], gas: 1000000 })
 });
 
 describe('Lottery Contract', () => {

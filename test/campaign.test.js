@@ -1,7 +1,8 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require("web3");
-const compiledBuild = require('../ethereum/build/campaign.sol.json');
+const compiledCampaign = require('../ethereum/build/Campaign.json');
+const compiledFactory = require('../ethereum/build/CampaignFactory.json');
 // const compiledBuild = require('../ethereum/compile/campaign');
 
 // const web = new Web3(ganache.provider());
@@ -11,13 +12,32 @@ let accounts;
 let factory;
 let campaignAddress;
 let campaign;
-const parseBuild = JSON.parse(JSON.stringify(compiledBuild));
-beforeEach( async () => {
+const compiledCode = JSON.parse(JSON.stringify(compiledFactory));
+
+/**
+ * deploy contract using compile script
+ */
+ async function deployContractFromConpiledScript() {
+    return await new web.eth.Contract(compiledCode.interface)
+        .deploy({ data: compiledCode.byteCode })
+        .send({ from: accounts[0], gas: 1000000 })
+}
+
+/**
+ * deploy contract from contract builds
+ */
+async function deployContractFromBuildPath() {
+    return await new web.eth.Contract(compiledCode.abi)
+    .deploy({ data: compiledCode.evm.bytecode.object })
+    .send({ from: accounts[0], gas: "1000000" });
+}
+
+beforeEach(async () => {
     accounts = await web.eth.getAccounts();
 
-    factory = await new web.eth.Contract(parseBuild['CampaignFactory'].abi)
-    .deploy({ data: parseBuild['CampaignFactory'].evm.bytecode.object })
-    .send({ from: accounts[0], gas: "20000" });
+    factory = await new web.eth.Contract(compiledCode.abi)
+    .deploy({ data: compiledCode.evm.bytecode.object })
+    .send({ from: accounts[0], gas: "1000000" });
 
     await factory.methods.createCampaign('110').send({
         from: accounts[0],
@@ -26,7 +46,7 @@ beforeEach( async () => {
 
     [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
 
-    campaign = await web.eth.Contract(parseBuild['CampaignFactory'].abi, campaignAddress);
+    campaign = await web.eth.Contract(parseBuild.abi, campaignAddress);
 });
 
 describe('Campaign Factory', () => {
