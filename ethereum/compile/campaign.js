@@ -1,10 +1,14 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const solc = require('solc');
-const currentDirectory = __dirname;
+// const currentDirectory = __dirname;
 const projectDirectory = process.cwd();
-const inboxPath = path.resolve(`${projectDirectory}/ethereum`, 'contracts', 'campaign.sol');
-const fileContent = fs.readFileSync(inboxPath, 'utf8');
+
+const buildPath = path.resolve(__dirname, 'build');
+const fileContent = fs.readFileSync(buildPath, 'utf8');
+
+const campaignPath = path.resolve(`${projectDirectory}/ethereum`, 'contracts', 'campaign.sol');
+const fileContent = fs.readFileSync(campaignPath, 'utf8');
 
 const input = {
     language: 'Solidity',
