@@ -29,6 +29,7 @@ const input = {
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
 fs.ensureDirSync(buildPath);
+console.log(output);
 
 const abi = output.contracts["campaign.sol"]["Campaign"].abi;
 const byteCode = output.contracts["campaign.sol"]["Campaign"].evm.bytecode.object;

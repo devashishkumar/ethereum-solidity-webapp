@@ -1,7 +1,8 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require("web3");
-const compiledCode = require('../ethereum/compile/inbox');
+// const compiledCode = require('../ethereum/compile/inbox');
+const inputBuild = require('../ethereum/build/inbox.sol.json');
 
 // const web = new Web3(ganache.provider());
 const web = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
@@ -11,11 +12,32 @@ const UPDATED_MESSATE = 'Updated Message';
 
 let accounts;
 let inbox;
-beforeEach(async () => {
-    accounts = await web.eth.getAccounts();
-    inbox = await new web.eth.Contract(compiledCode.interface)
+const compiledCode = JSON.parse(JSON.stringify(inputBuild));
+/**
+ * deploy contract using compile script
+ */
+async function deployContractFromConpiledScript() {
+    return await new web.eth.Contract(compiledCode.interface)
         .deploy({ data: compiledCode.byteCode, arguments: [DEFAULT_MESSAGE] })
         .send({ from: accounts[0], gas: 1000000 })
+}
+
+/**
+ * deploy contract from contract builds
+ */
+async function deployContractFromBuildPath() {
+    return await new web.eth.Contract(compiledCode['Inbox'].abi)
+    .deploy({ data: compiledCode['Inbox'].evm.bytecode.object, arguments: [DEFAULT_MESSAGE] })
+    .send({ from: accounts[0], gas: "1000000" });
+}
+
+beforeEach(async () => {
+    accounts = await web.eth.getAccounts();
+    
+    inbox = await new web.eth.Contract(compiledCode['Inbox'].abi)
+    .deploy({ data: compiledCode['Inbox'].evm.bytecode.object, arguments: [DEFAULT_MESSAGE] })
+    .send({ from: accounts[0], gas: "1000000" });
+    
 });
 
 describe('Inbox Contract', () => {
