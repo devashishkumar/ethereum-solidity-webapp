@@ -20,7 +20,7 @@ const compiledCode = JSON.parse(JSON.stringify(inputBuild));
 async function deployContractFromConpiledScript() {
     return await new web.eth.Contract(compiledCode.interface)
         .deploy({ data: compiledCode.byteCode, arguments: [DEFAULT_MESSAGE] })
-        .send({ from: accounts[0], gas: 1000000 })
+        .send({ from: accounts[0], gas: "1000000" })
 }
 
 /**

@@ -20,7 +20,7 @@ const compiledCode = JSON.parse(JSON.stringify(inputBuild));
  async function deployContractFromConpiledScript() {
     return await new web.eth.Contract(compiledCode.interface)
         .deploy({ data: compiledCode.evm.byteCode.object })
-        .send({ from: accounts[0], gas: 1000000 })
+        .send({ from: accounts[0], gas: "1000000" })
 }
 
 /**
@@ -29,14 +29,14 @@ const compiledCode = JSON.parse(JSON.stringify(inputBuild));
 async function deployContractFromBuildPath() {
     return await new web.eth.Contract(compiledCode.abi)
     .deploy({ data: compiledCode.evm.bytecode.object })
-    .send({ from: accounts[0], gas: 1000000 })
+    .send({ from: accounts[0], gas: "1000000" })
 }
 
 beforeEach(async () => {
     accounts = await web.eth.getAccounts();
     lottery = await new web.eth.Contract(compiledCode.abi)
     .deploy({ data: compiledCode.evm.bytecode.object })
-    .send({ from: accounts[0], gas: 1000000 })
+    .send({ from: accounts[0], gas: "1000000" })
 });
 
 describe('Lottery Contract', () => {

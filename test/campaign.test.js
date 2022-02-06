@@ -20,7 +20,7 @@ const compiledCode = JSON.parse(JSON.stringify(compiledFactory));
  async function deployContractFromConpiledScript() {
     return await new web.eth.Contract(compiledCode.interface)
         .deploy({ data: compiledCode.byteCode })
-        .send({ from: accounts[0], gas: 1000000 })
+        .send({ from: accounts[0], gas: "1000000" })
 }
 
 /**
@@ -46,7 +46,7 @@ beforeEach(async () => {
 
     [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
 
-    campaign = await web.eth.Contract(parseBuild.abi, campaignAddress);
+    campaign = await web.eth.Contract(compiledCode.abi, campaignAddress);
 });
 
 describe('Campaign Factory', () => {
